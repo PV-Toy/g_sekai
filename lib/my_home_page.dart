@@ -53,18 +53,19 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget buildGallery3D() {
     return Gallery3D(
         controller: controller,
-        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+        // padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
         itemConfig: GalleryItemConfig(
-            width: 220,
-            height: 300,
-            radius: 10,
-            isShowTransformMask: true,
-            shadows: [
-              BoxShadow(
-                  color: Color(0x90000000), offset: Offset(2, 0), blurRadius: 5)
-            ]),
+          width: 220,
+          height: 300,
+          radius: 10,
+          isShowTransformMask: true,
+          // shadows: [
+          //   BoxShadow(
+          //       color: Color(0x90000000), offset: Offset(2, 0), blurRadius: 5)
+          // ]
+        ),
         width: MediaQuery.of(context).size.width,
-        height: 500,
+        height: MediaQuery.of(context).size.height,
         isClip: true,
 
         // currentIndex: currentIndex,
@@ -91,6 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("demo01"),
       ),
       body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
         child: Column(
           children: [
             Stack(
@@ -98,13 +100,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 BackgrounBlurView(
                   imageUrl: imageUrlList[currentIndex],
                 ),
-                Positioned.fill(
-                  child: Center(
-                    child: Container(
-                      // padding: EdgeInsets.only(top: 40),
-                      child: buildGallery3D(),
-                      margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
-                    ),
+                Center(
+                  child: Container(
+                    padding: EdgeInsets.only(top: 40),
+                    child: buildGallery3D(),
+                    margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                   ),
                 )
               ],
