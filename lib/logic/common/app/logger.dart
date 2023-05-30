@@ -4,16 +4,8 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:g_sekai/logic/common/app/constant.dart';
-
 import 'package:path_provider/path_provider.dart';
 import 'package:yaml_writer/yaml_writer.dart';
-
-class NetworkingError extends Error {
-  NetworkingError(this.msg);
-  final String msg;
-  @override
-  String toString() => "NETWORKING_ERROR: $msg";
-}
 
 class MsgException implements Error {
   final String _message;
