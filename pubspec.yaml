@@ -39,6 +39,8 @@ dependencies:
   firebase_auth: ^4.4.2
   flutter_gallery_3d: ^1.1.1
   cloud_firestore: ^4.7.1
+  cached_network_image: ^3.2.3
+  yaml_writer: ^1.0.3
 
 dev_dependencies:
   flutter_test:
