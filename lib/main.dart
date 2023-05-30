@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:g_sekai/firebase_options.dart';
+import 'package:g_sekai/firebase_test.dart';
 import 'package:g_sekai/managers/route_manager.dart';
 
 void main() async {
@@ -14,11 +15,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      routerConfig: gRotuerManager.router,
+    return MaterialApp(
+      home: FilmList(),
     );
+    // .router(
+    //   theme: ThemeData(
+    //     primarySwatch: Colors.blue,
+    //   ),
+    //   routerConfig: gRotuerManager.router,
+
+    // );
   }
 }
