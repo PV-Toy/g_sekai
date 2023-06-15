@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gallery_3d/gallery3d.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -38,59 +37,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int currentIndex = 0;
 
-  late Gallery3DController controller;
-
   @override
   void initState() {
-    controller = Gallery3DController(
-        itemCount: imageUrlList.length,
-        autoLoop: true,
-        ellipseHeight: 0,
-        minScale: 0.4);
     super.initState();
-  }
-
-  Widget buildGallery3D() {
-    return Gallery3D(
-        controller: controller,
-        // padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-        itemConfig: GalleryItemConfig(
-          width: 220,
-          height: 300,
-          radius: 10,
-          isShowTransformMask: true,
-          // shadows: [
-          //   BoxShadow(
-          //       color: Color(0x90000000), offset: Offset(2, 0), blurRadius: 5)
-          // ]
-        ),
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        isClip: true,
-
-        // currentIndex: currentIndex,
-        onItemChanged: (index) {
-          setState(() {
-            this.currentIndex = index;
-          });
-
-          // print(index);
-        },
-        onClickItem: (index) => print("currentIndex:$index"),
-        itemBuilder: (context, index) {
-          return Image.network(
-            imageUrlList[index],
-            fit: BoxFit.fill,
-          );
-        });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("demo01"),
-      ),
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
         child: Column(
@@ -100,13 +54,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 BackgrounBlurView(
                   imageUrl: imageUrlList[currentIndex],
                 ),
-                Center(
-                  child: Container(
-                    padding: EdgeInsets.only(top: 40),
-                    child: buildGallery3D(),
-                    margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
-                  ),
-                )
               ],
             ),
           ],
@@ -118,26 +65,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
 class BackgrounBlurView extends StatelessWidget {
   final String imageUrl;
-  BackgrounBlurView({Key? key, required this.imageUrl}) : super(key: key);
+  const BackgrounBlurView({Key? key, required this.imageUrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      Container(
-        height: MediaQuery.of(context).size.height - kToolbarHeight,
-        width: MediaQuery.of(context).size.width,
-        child: Image.network(
-          imageUrl,
-          fit: BoxFit.cover,
-        ),
-      ),
-      BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-          child: Container(
-            color: Colors.black.withOpacity(0.1),
-            height: 200,
-            width: MediaQuery.of(context).size.width,
-          ))
-    ]);
+    return Container();
   }
 }

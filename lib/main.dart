@@ -15,15 +15,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: FilmList(),
+    return MaterialApp.router(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      routerConfig: gRotuerManager.router,
     );
-    // .router(
-    //   theme: ThemeData(
-    //     primarySwatch: Colors.blue,
-    //   ),
-    //   routerConfig: gRotuerManager.router,
-
-    // );
   }
 }
