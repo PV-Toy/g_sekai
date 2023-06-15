@@ -19,7 +19,7 @@ Future<void> main() async {
 final gamesRef =
     FirebaseFirestore.instance.collection('Game').withConverter<Game>(
           fromFirestore: (snapshots, _) => Game.fromJson(snapshots.data()!),
-          toFirestore: (movie, _) => movie.toJson(),
+          toFirestore: (game, _) => game.toJson(),
         );
 
 /// The different ways that we can filter/sort movies.
