@@ -41,6 +41,8 @@ dependencies:
   cached_network_image: ^3.2.3
   yaml_writer: ^1.0.3
   path_provider: ^2.0.15
+  http: ^0.13.3
+  youtube_player_iframe: ^4.0.4
 
 dev_dependencies:
   flutter_test:
