@@ -34,14 +34,14 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  go_router: ^7.1.1
+  go_router: ^9.0.0
   firebase_core: ^2.10.0
   firebase_auth: ^4.4.2
   cloud_firestore: ^4.7.1
   cached_network_image: ^3.2.3
   yaml_writer: ^1.0.3
   path_provider: ^2.0.15
-  http: ^0.13.3
+  http: ^1.1.0
   youtube_player_iframe: ^4.0.4
 
 dev_dependencies:

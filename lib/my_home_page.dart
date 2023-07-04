@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:g_sekai/widgets/custom_carousel.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -42,102 +43,74 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  final testc = Container(
-    width: 57,
-    height: 57,
-    decoration: BoxDecoration(
-      shape: BoxShape.circle,
-      color: Colors.blue,
-    ),
-  );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.0),
-          topRight: Radius.circular(20.0),
-        ),
-        child: Container(
-            padding: const EdgeInsets.fromLTRB(25, 22, 38, 18),
-            height: 90,
-            color: Color.fromRGBO(39, 11, 14, 0.9),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  width: 57,
-                  height: 57,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Color(0xFFF83F56),
-                        Color(0xFFA11538),
-                      ],
-                      stops: [0.0, 0.7136],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      transform:
-                          GradientRotation(3.14159), // 180 degrees in radians
-                    ),
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0xFFF87D9F),
-                        offset: Offset(0, 4),
-                        blurRadius: 13.0,
-                        spreadRadius: -6.0,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+          ),
+          child: Container(
+              padding: const EdgeInsets.fromLTRB(25, 22, 38, 18),
+              height: 90,
+              color: Color.fromRGBO(39, 11, 14, 0.9),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 57,
+                    height: 57,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Color(0xFFF83F56),
+                          Color(0xFFA11538),
+                        ],
+                        stops: [0.0, 0.7136],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        transform:
+                            GradientRotation(3.14159), // 180 degrees in radians
                       ),
-                    ],
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0xFFF87D9F),
+                          offset: Offset(0, 4),
+                          blurRadius: 13.0,
+                          spreadRadius: -6.0,
+                        ),
+                      ],
+                    ),
+                    padding: const EdgeInsets.all(7),
+                    child: Row(),
                   ),
-                  padding: const EdgeInsets.all(7),
-                  child: Row(),
-                ),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Icon(Icons.home),
-                      Icon(Icons.person_2_outlined),
-                    ]),
-              ],
-            )
-            //  BottomNavigationBar(
-            //   backgroundColor: Colors.red,
-            //   items: [
-            //     BottomNavigationBarItem(
-            //       icon: Icon(Icons.home),
-            //       label: 'Home',
-            //     ),
-            //     BottomNavigationBarItem(
-            //       icon: Icon(Icons.settings),
-            //       label: 'Settings',
-            //     ),
-            //   ],
-            // ),
-            ),
-      ),
-
-      //       bottomNavigationBar: BottomNavigationBar(
-      //   items: const <BottomNavigationBarItem>[
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.home),
-      //       label: 'Home',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.business),
-      //       label: 'Business',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.school),
-      //       label: 'School',
-      //     ),
-      //   ],
-      //   selectedItemColor: Colors.amber[800],
-      // ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Icon(Icons.home),
+                        Icon(Icons.person_2_outlined),
+                      ]),
+                ],
+              ))),
       body: SafeArea(
-        child: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            CustomCarousel(
+              key: const Key("GAME_PICTURES"),
+              children: List<Widget>.generate(
+                  imageUrlList.length,
+                  (index) => Material(
+                        color: Colors.red,
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(50.0))),
+                        // child: MediaWidget(imageUrl: imageUrlList[index])
+                      )),
+            ),
+          ],
         ),
       ),
     );
