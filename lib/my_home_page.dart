@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:g_sekai/widgets/custom_carousel.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -40,28 +41,48 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+    //   final s = await fetchYouTubeData();
+    //   print(s);
+    // });
+
     super.initState();
   }
+
+  final testc = Container(
+    width: 57,
+    height: 57,
+    decoration: const BoxDecoration(
+      shape: BoxShape.circle,
+      color: Colors.blue,
+    ),
+  );
+
+  final _controller = YoutubePlayerController.fromVideoId(
+    videoId: 'KGWuptrJCUA',
+    autoPlay: true,
+    params: const YoutubePlayerParams(showFullscreenButton: true),
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: ClipRRect(
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(20.0),
             topRight: Radius.circular(20.0),
           ),
           child: Container(
               padding: const EdgeInsets.fromLTRB(25, 22, 38, 18),
               height: 90,
-              color: Color.fromRGBO(39, 11, 14, 0.9),
+              color: const Color.fromRGBO(39, 11, 14, 0.9),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     width: 57,
                     height: 57,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
                           Color(0xFFF83F56),
@@ -88,13 +109,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+                      children: const [
                         Icon(Icons.home),
                         Icon(Icons.person_2_outlined),
                       ]),
                 ],
               ))),
       body: SafeArea(
+// child: YoutubePlayer(
+//         controller: _controller,
+//         aspectRatio: 16 / 9,
+//       )
+
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -102,9 +128,9 @@ class _MyHomePageState extends State<MyHomePage> {
               key: const Key("GAME_PICTURES"),
               children: List<Widget>.generate(
                   imageUrlList.length,
-                  (index) => Material(
+                  (index) => const Material(
                         color: Colors.red,
-                        shape: const RoundedRectangleBorder(
+                        shape: RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(50.0))),
                         // child: MediaWidget(imageUrl: imageUrlList[index])
