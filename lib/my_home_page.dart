@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:g_sekai/widgets/custom_carousel.dart';
+import 'package:g_sekai/widgets/media_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -46,6 +48,25 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.amber,
+        // foregroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+        elevation: 0,
+        title: Row(
+          children: [
+            Image.asset(
+              "assets/icons/main_logo.png",
+              width: 40,
+              height: 40,
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Text("G.SEKAI"),
+          ],
+        ),
+      ),
       bottomNavigationBar: ClipRRect(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20.0),
@@ -95,22 +116,55 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ))),
       body: SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            CustomCarousel(
-              key: const Key("GAME_PICTURES"),
-              children: List<Widget>.generate(
-                  imageUrlList.length,
-                  (index) => Material(
-                        color: Colors.red,
-                        shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(50.0))),
-                        // child: MediaWidget(imageUrl: imageUrlList[index])
-                      )),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+          child: Column(
+            children: [
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Chip(label: Text("Papular")),
+                  Chip(label: Text("Newest")),
+                  Chip(label: Text("Recommended")),
+                  Icon(Icons.search)
+                ],
+              ),
+              Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text("VALORANT"),
+                        Row(
+                          children: [
+                            Icon(Icons.favorite_outline),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Icon(Icons.volume_off),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  CustomCarousel(
+                    key: const Key("GAME_PICTURES"),
+                    children: List<Widget>.generate(
+                        imageUrlList.length,
+                        (index) => const Material(
+                              color: Colors.red,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(50.0))),
+                              // child: MediaWidget(imageUrl: imageUrlList[index])
+                            )),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
