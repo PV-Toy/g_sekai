@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Stack(
                 children: [
                   Container(
-                      color: Colors.purple,
+                      color: const Color.fromRGBO(39, 11, 14, 1),
                       height: 150,
                       padding: const EdgeInsets.fromLTRB(30, 22, 30, 90),
                       child: Row(
@@ -135,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Container(
                         padding: const EdgeInsets.fromLTRB(70, 22, 70, 25),
                         decoration: const BoxDecoration(
-                          color: Color.fromRGBO(186, 43, 59, 20),
+                          color: Color.fromRGBO(70, 11, 14, 20),
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20.0),
                             topRight: Radius.circular(20.0),
