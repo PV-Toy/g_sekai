@@ -56,6 +56,15 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
   );
 
+  final title = Container(
+    width: 57,
+    height: 57,
+    decoration: const BoxDecoration(
+      shape: BoxShape.circle,
+      color: Colors.blue,
+    ),
+  );
+
   final _controller = YoutubePlayerController.fromVideoId(
     videoId: 'KGWuptrJCUA',
     autoPlay: true,
@@ -89,29 +98,74 @@ class _MyHomePageState extends State<MyHomePage> {
             topLeft: Radius.circular(20.0),
             topRight: Radius.circular(20.0),
           ),
-          child: Container(
-              padding: const EdgeInsets.fromLTRB(70, 22, 70, 25),
-              height: 80,
-              color: const Color.fromRGBO(254, 66, 86, 20),
-              child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(
-                      Icons.favorite,
-                      color: Colors.white,
-                      size: 28,
-                    ),
-                    Icon(
-                      Icons.home,
-                      color: Colors.white,
-                      size: 28,
-                    ),
-                    Icon(
-                      Icons.person_2_outlined,
-                      color: Colors.white,
-                      size: 28,
-                    ),
-                  ])
+          child: SizedBox(
+              // padding: const EdgeInsets.fromLTRB(70, 22, 70, 25),
+              height: 150,
+              child: Stack(
+                children: [
+                  Container(
+                      color: Colors.purple,
+                      height: 150,
+                      padding: const EdgeInsets.fromLTRB(30, 22, 30, 90),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Icon(
+                            Icons.menu,
+                            color: Colors.white,
+                            size: 28,
+                          ),
+                          Container(
+                            child: const Text('노래 제목!~~~'),
+                          ),
+                          const Icon(
+                            Icons.play_arrow,
+                            color: Colors.white,
+                            size: 28,
+                          ),
+                          const Icon(
+                            Icons.skip_next,
+                            color: Colors.white,
+                            size: 28,
+                          ),
+                        ],
+                      )),
+                  Positioned(
+                      bottom: 0,
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(70, 22, 70, 25),
+                        decoration: const BoxDecoration(
+                          color: Color.fromRGBO(186, 43, 59, 20),
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20.0),
+                            topRight: Radius.circular(20.0),
+                          ),
+                        ),
+                        height: 80,
+                        width: MediaQuery.of(context).size.width,
+                        child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Icon(
+                                Icons.favorite_outline,
+                                color: Colors.white,
+                                size: 28,
+                              ),
+                              Icon(
+                                Icons.home,
+                                color: Colors.white,
+                                size: 28,
+                              ),
+                              Icon(
+                                Icons.person_2_outlined,
+                                color: Colors.white,
+                                size: 28,
+                              ),
+                            ]),
+                      ))
+                ],
+              )
+
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
               //   children: [
