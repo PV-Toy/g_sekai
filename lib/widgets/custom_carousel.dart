@@ -10,8 +10,11 @@ const _itemPeek = 8; //화면 모서리에 보여지는 이전,다음 카드의 
 const _itemPadding = EdgeInsets.symmetric(horizontal: _itemGap / 2);
 
 class CustomCarousel extends StatefulWidget {
-  const CustomCarousel({super.key, required this.children});
+  const CustomCarousel(
+      {super.key, required this.children, this.onPageChnage, this.onTap});
   final List<Widget> children;
+  final Function(int)? onPageChnage;
+  final Function()? onTap;
 
   @override
   State<CustomCarousel> createState() => _CustomCarouselState();
@@ -50,29 +53,32 @@ class _CustomCarouselState extends State<CustomCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: _height,
-      child: OverflowBox(
-        maxWidth: size.width,
-        minWidth: size.width,
-        child: children.isEmpty
-            ? blank
-            : PageView.custom(
-                onPageChanged: (value) =>
-                    currentIndex.value = value % children.length,
-                controller: ctrl,
-                scrollDirection: Axis.horizontal,
-                childrenDelegate: SliverChildBuilderDelegate(
-                    childCount: children.length == 1 ? 1 : null,
-                    (context, index) {
-                  return Container(
-                      width: index % children.length == currentIndex.value
-                          ? itemDimension * .1
-                          : itemDimension,
-                      padding: _itemPadding,
-                      child: children[index % children.length]);
-                }, addSemanticIndexes: false),
-              ),
+    return GestureDetector(
+      onTap: widget.onTap?.call,
+      child: SizedBox(
+        height: _height,
+        child: OverflowBox(
+          maxWidth: size.width,
+          minWidth: size.width,
+          child: children.isEmpty
+              ? blank
+              : PageView.custom(
+                  onPageChanged: (value) {
+                    currentIndex.value = value % children.length;
+                    widget.onPageChnage?.call(currentIndex.value);
+                  },
+                  controller: ctrl,
+                  scrollDirection: Axis.horizontal,
+                  childrenDelegate: SliverChildBuilderDelegate(
+                      childCount: children.length == 1 ? 1 : null,
+                      (context, index) {
+                    return Container(
+                        // width: itemDimension,
+                        padding: _itemPadding,
+                        child: children[index % children.length]);
+                  }, addSemanticIndexes: false),
+                ),
+        ),
       ),
     );
   }

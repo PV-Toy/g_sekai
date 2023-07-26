@@ -1,25 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-enum ImageType {
-  jpeg,
-  png,
-  gif,
-  animatedGif,
-  webp,
-  animatedWebp,
-  bmp,
-  wbmp;
-}
+enum ImageType { jpeg, png, gif, animatedGif, webp, animatedWebp, bmp, wbmp }
 
-enum VideoType {
-  mp4,
-}
+enum VideoType { mp4 }
 
-enum MediaType {
-  iamge,
-  video,
-}
+enum MediaType { iamge, video }
 
 class MediaWidget extends StatefulWidget {
   const MediaWidget({super.key, this.imageUrl});
@@ -38,6 +24,9 @@ class _MediaWidgetState extends State<MediaWidget> {
   Widget _imageWidget(String url) {
     return !url.startsWith("http")
         ? Image.asset(url)
-        : CachedNetworkImage(imageUrl: widget.imageUrl!, fit: BoxFit.cover);
+        : CachedNetworkImage(
+            imageUrl: widget.imageUrl!,
+            fit: BoxFit.cover,
+          );
   }
 }

@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:g_sekai/firebase_options.dart';
-import 'package:g_sekai/firebase_test.dart';
 import 'package:g_sekai/managers/route_manager.dart';
+import 'package:g_sekai/theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,9 +16,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: GTheme.lightTheme.widgetThemedDEBUG,
+      darkTheme: GTheme.darkTheme.widgetThemedDEBUG,
       routerConfig: gRotuerManager.router,
     );
   }
