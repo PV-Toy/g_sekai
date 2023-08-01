@@ -11,9 +11,9 @@ const _itemPadding = EdgeInsets.symmetric(horizontal: _itemGap / 2);
 
 class CustomCarousel extends StatefulWidget {
   const CustomCarousel(
-      {super.key, required this.children, this.onPageChnage, this.onTap});
+      {super.key, required this.children, this.onPageChange, this.onTap});
   final List<Widget> children;
-  final Function(int)? onPageChnage;
+  final Function(int)? onPageChange;
   final Function()? onTap;
 
   @override
@@ -65,7 +65,7 @@ class _CustomCarouselState extends State<CustomCarousel> {
               : PageView.custom(
                   onPageChanged: (value) {
                     currentIndex.value = value % children.length;
-                    widget.onPageChnage?.call(currentIndex.value);
+                    widget.onPageChange?.call(currentIndex.value);
                   },
                   controller: ctrl,
                   scrollDirection: Axis.horizontal,
