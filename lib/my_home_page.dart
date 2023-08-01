@@ -65,16 +65,28 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
 
-    // Set the initial dominant color for the first image in imageUrlList
     updateDominantColor(imageUrlList[0]);
   }
 
   void updateDominantColor(String imageUrl) {
-    print(imageUrlList);
-    // Call getDominantColor to get the dominant color of the current image
     getDominantColor(imageUrl).then((Color color) {
-      // Update the dominantColor ValueNotifier with the new color
-      dominantColor.value = color;
+      print(color);
+      print(color.withAlpha(150));
+
+      int red = color.red;
+      int green = color.green;
+      int blue = color.blue;
+
+// Reduce the RGB values by a small amount to add black to the color
+      int blackOffset = 40; // You can adjust this value as needed
+
+      int newRed = (red - blackOffset).clamp(0, 255);
+      int newGreen = (green - blackOffset).clamp(0, 255);
+      int newBlue = (blue - blackOffset).clamp(0, 255);
+
+      Color modifiedColor = Color.fromARGB(255, newRed, newGreen, newBlue);
+
+      dominantColor.value = modifiedColor;
     });
   }
 
