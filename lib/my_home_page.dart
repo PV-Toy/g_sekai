@@ -68,17 +68,16 @@ class _MyHomePageState extends State<MyHomePage> {
     updateDominantColor(imageUrlList[0]);
   }
 
+  Color overlayColor50 = Colors.black.withOpacity(0.5);
+  Color overlayColor80 = Colors.black.withOpacity(0.8);
+
   void updateDominantColor(String imageUrl) {
     getDominantColor(imageUrl).then((Color color) {
-      print(color);
-      print(color.withAlpha(150));
-
       int red = color.red;
       int green = color.green;
       int blue = color.blue;
 
-// Reduce the RGB values by a small amount to add black to the color
-      int blackOffset = 40; // You can adjust this value as needed
+      int blackOffset = 50;
 
       int newRed = (red - blackOffset).clamp(0, 255);
       int newGreen = (green - blackOffset).clamp(0, 255);
@@ -86,9 +85,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
       Color modifiedColor = Color.fromARGB(255, newRed, newGreen, newBlue);
 
-      dominantColor.value = modifiedColor;
+      // dominantColor.value = modifiedColor;
+      dominantColor.value = color;
     });
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -96,9 +98,9 @@ class _MyHomePageState extends State<MyHomePage> {
         valueListenable: dominantColor,
         builder: (context, color, _) {
           return Scaffold(
+            backgroundColor: Color.alphaBlend(overlayColor50, color),
             appBar: AppBar(
-              backgroundColor: color,
-              // foregroundColor: Colors.transparent,
+              backgroundColor: Color.alphaBlend(overlayColor50, color),
               shadowColor: Colors.transparent,
               elevation: 0,
               title: Row(
@@ -111,7 +113,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   const SizedBox(
                     width: 5,
                   ),
-                  const Text("G.SEKAI"),
+                  const Text("G.SEKAI",
+                    style: TextStyle(
+                      color: Colors.white, // Set the color to white
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -121,12 +127,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   topRight: Radius.circular(20.0),
                 ),
                 child: SizedBox(
-                    // padding: const EdgeInsets.fromLTRB(70, 22, 70, 25),
                     height: 150,
                     child: Stack(
                       children: [
                         Container(
-                            color: const Color.fromRGBO(39, 11, 14, 1),
+                            color: Color.alphaBlend(overlayColor80, color),
                             height: 150,
                             padding: const EdgeInsets.fromLTRB(30, 22, 30, 90),
                             child: Row(
@@ -138,7 +143,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   size: 28,
                                 ),
                                 Container(
-                                  child: const Text('노래 제목!~~~'),
+                                  child: const Text('노래 제목!~~~',  style: TextStyle(
+                                    color: Colors.white,
+                                  ),),
                                 ),
                                 const Icon(
                                   Icons.play_arrow,
@@ -157,8 +164,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Container(
                               padding:
                                   const EdgeInsets.fromLTRB(70, 22, 70, 25),
-                              decoration: const BoxDecoration(
-                                color: Color.fromRGBO(70, 11, 14, 20),
+                              decoration: BoxDecoration(
+                                color: Color.alphaBlend(overlayColor80, color.withOpacity(0.5)),
                                 borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(20.0),
                                   topRight: Radius.circular(20.0),
