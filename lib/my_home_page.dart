@@ -22,8 +22,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<String> imageUrlList = [
-    "https://i0.hdslb.com/bfs/manga-static/42b2143b5694835ae35763bea634cdfc36392801.jpg@300w.jpg",
-    "https://i0.hdslb.com/bfs/manga-static/87e22d652eb4c456fe251e15b57bbb25da39925a.jpg@300w.jpg",
+    "https://gsekai.s3.ap-northeast-2.amazonaws.com/images/dislight_main.jpeg",
+    "https://gsekai.s3.ap-northeast-2.amazonaws.com/images/nikke_main.jpeg",
     "https://i0.hdslb.com/bfs/manga-static/3f01609c36d4816eb227c95ac31471710fa706e6.jpg@300w.jpg",
     "https://i0.hdslb.com/bfs/manga-static/5482454680757477d728dae82f80a280a9cc97a2.jpg@300w.jpg",
   ];
@@ -90,8 +90,6 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<Color>(
@@ -113,7 +111,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   const SizedBox(
                     width: 5,
                   ),
-                  const Text("G.SEKAI",
+                  const Text(
+                    "G.SEKAI",
                     style: TextStyle(
                       color: Colors.white, // Set the color to white
                     ),
@@ -143,9 +142,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                   size: 28,
                                 ),
                                 Container(
-                                  child: const Text('노래 제목!~~~',  style: TextStyle(
-                                    color: Colors.white,
-                                  ),),
+                                  child: const Text(
+                                    '노래 제목!~~~',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                 ),
                                 const Icon(
                                   Icons.play_arrow,
@@ -165,7 +167,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               padding:
                                   const EdgeInsets.fromLTRB(70, 22, 70, 25),
                               decoration: BoxDecoration(
-                                color: Color.alphaBlend(overlayColor80, color.withOpacity(0.5)),
+                                color: Color.alphaBlend(
+                                    overlayColor80, color.withOpacity(0.5)),
                                 borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(20.0),
                                   topRight: Radius.circular(20.0),
