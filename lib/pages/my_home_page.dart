@@ -4,8 +4,16 @@ import 'package:g_sekai/logic/common/app/constant.dart';
 import 'package:g_sekai/widgets/custom_carousel.dart';
 import 'package:g_sekai/widgets/media_widget.dart';
 import 'package:palette_generator/palette_generator.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 enum SearchFilter { pupular, newest, recommanded }
+
+final gamesRef =
+    FirebaseFirestore.instance.collection('Game').withConverter<Game>(
+          fromFirestore: (snapshots, _) => Game.fromJson(snapshots.data()!),
+          toFirestore: (game, _) => game.toJson(),
+        );
 
 extension on SearchFilter {
   String get chipLabel => name.toCapitalized();
@@ -169,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               decoration: BoxDecoration(
                                 color: Color.alphaBlend(
                                     overlayColor80, color.withOpacity(0.5)),
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(20.0),
                                   topRight: Radius.circular(20.0),
                                 ),
@@ -290,6 +298,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           children: List<Widget>.generate(
                               imageUrlList.length,
                               (index) => Material(
+                                  color:
+                                      Color.alphaBlend(overlayColor50, color),
                                   child: ClipRRect(
                                       borderRadius: BorderRadius.circular(50),
                                       child: MediaWidget(
@@ -305,3 +315,47 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 }
+
+@immutable
+class Game {
+  const Game({
+    required this.ord,
+    required this.name,
+    required this.description,
+    required this.communityList,
+  });
+
+  Game.fromJson(Map<String, Object?> json)
+      : this(
+          ord: json['ord']! as int,
+          name: json['name']! as String,
+          description: json['description']! as String,
+          communityList: json['communityList']! as Map,
+        );
+
+  final int ord;
+  final String name;
+  final String description;
+  final Map communityList;
+
+  Map<String, Object?> toJson() {
+    return {
+      'ord': ord,
+      'name': name,
+      'description': description,
+      'communityList': communityList,
+    };
+  }
+}
+
+const defaultFirebaseOptions = FirebaseOptions(
+  apiKey: 'AIzaSyB7wZb2tO1-Fs6GbDADUSTs2Qs3w08Hovw',
+  appId: '1:406099696497:web:87e25e51afe982cd3574d0',
+  messagingSenderId: '406099696497',
+  projectId: 'flutterfire-e2e-tests',
+  authDomain: 'flutterfire-e2e-tests.firebaseapp.com',
+  databaseURL:
+      'https://flutterfire-e2e-tests-default-rtdb.europe-west1.firebasedatabase.app',
+  storageBucket: 'flutterfire-e2e-tests.appspot.com',
+  measurementId: 'G-JN95N1JV2E',
+);
