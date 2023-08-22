@@ -44,6 +44,7 @@ dependencies:
   youtube_player_iframe: ^4.0.4
   flutter_svg: ^2.0.7
   audioplayers: ^5.0.0
+  palette_generator: ^0.3.3+2
 
 dev_dependencies:
   flutter_test:
