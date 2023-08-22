@@ -1,8 +1,8 @@
-import 'package:g_sekai/my_home_page.dart';
+import 'package:g_sekai/pages/my_home_page.dart';
 import 'package:g_sekai/pages/game_list_page.dart';
 import 'package:go_router/go_router.dart';
 
-final gRotuerManager = RouterManager();
+final gRoutuerManager = RouterManager();
 
 enum PageName {
   home();

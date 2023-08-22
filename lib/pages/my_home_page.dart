@@ -1,8 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:g_sekai/logic/common/app/constant.dart';
 import 'package:g_sekai/widgets/custom_carousel.dart';
 import 'package:g_sekai/widgets/media_widget.dart';
+import 'package:g_sekai/widgets/music_player.dart';
 
 enum SearchFilter { pupular, newest, recommanded }
 
@@ -82,33 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 150,
               child: Stack(
                 children: [
-                  Container(
-                      color: const Color.fromRGBO(39, 11, 14, 1),
-                      height: 150,
-                      padding: const EdgeInsets.fromLTRB(30, 22, 30, 90),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Icon(
-                            Icons.menu,
-                            color: Colors.white,
-                            size: 28,
-                          ),
-                          Container(
-                            child: const Text('노래 제목!~~~'),
-                          ),
-                          const Icon(
-                            Icons.play_arrow,
-                            color: Colors.white,
-                            size: 28,
-                          ),
-                          const Icon(
-                            Icons.skip_next,
-                            color: Colors.white,
-                            size: 28,
-                          ),
-                        ],
-                      )),
+                  const MusicPlayer(),
                   Positioned(
                       bottom: 0,
                       child: Container(
@@ -143,49 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ]),
                       ))
                 ],
-              )
-
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     Container(
-              //       width: 57,
-              //       height: 57,
-              //       decoration: const BoxDecoration(
-              //         gradient: LinearGradient(
-              //           colors: [
-              //             Color(0xFFF83F56),
-              //             Color(0xFFA11538),
-              //           ],
-              //           stops: [0.0, 0.7136],
-              //           begin: Alignment.topCenter,
-              //           end: Alignment.bottomCenter,
-              //           transform:
-              //               GradientRotation(3.14159), // 180 degrees in radians
-              //         ),
-              //         shape: BoxShape.circle,
-              //         boxShadow: [
-              //           BoxShadow(
-              //             color: Color(0xFFF87D9F),
-              //             offset: Offset(0, 4),
-              //             blurRadius: 13.0,
-              //             spreadRadius: -6.0,
-              //           ),
-              //         ],
-              //       ),
-              //       padding: const EdgeInsets.all(7),
-              //       child: Row(),
-              //     ),
-              //     const Row(
-              //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //         children: [
-              //           Icon(Icons.favorite),
-              //           Icon(Icons.home),
-              //           Icon(Icons.person_2_outlined),
-              //         ]),
-              //   ],
-              // )
-              )),
+              ))),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
